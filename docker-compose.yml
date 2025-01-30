@@ -1,0 +1,23 @@
+version: '3'
+services:
+  web:
+    image: nginx
+    ports:
+      - "8083:80"
+    volumes:
+      - ./html:/usr/share/nginx/html
+
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: devops
+    ports:
+      - "3307:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+    ports:
+      - "8082:80"
